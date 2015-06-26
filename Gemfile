@@ -45,5 +45,7 @@ group :development, :test do
   gem 'bootstrap-sass'
   
   gem 'devise'
+  
+  gem 'heroku'
 end
 
