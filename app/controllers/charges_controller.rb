@@ -20,11 +20,16 @@ class ChargesController < ApplicationController
    charge = Stripe::Charge.create(
      customer: customer.id, # Note -- this is NOT the user_id in your app
      amount: Amount.default,
-     description: "BigMoney Membership - #{current_user.email}",
+     description: "BigMoney Membership",
      currency: 'usd'
    )
- 
-   flash[:success] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
+    #binding.pry
+    if charge.status = "succeeded" 
+      current_user.role = "premium"
+      current_user.save!
+    end
+    
+    flash[:notice] = "Your account has been upgraded successfully."
     redirect_to edit_user_registration_path # or wherever
  
  # Stripe will send back CardErrors, with friendly messages
