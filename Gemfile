@@ -37,6 +37,8 @@ gem 'pundit'
 
 gem 'stripe'
 
+gem 'redcarpet'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
