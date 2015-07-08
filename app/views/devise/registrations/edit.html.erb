@@ -35,7 +35,7 @@
 <% if current_user.premium? %>
 <h3>Downgrade my account</h3>
 
-<p><%= link_to "I want less!", users_downgrade_path, class: 'btn btn-success'  %></p>
+<p><%= link_to "I want less!", users_downgrade_path, data: { confirm: "All your private wikis will become public. Are you sure?" }, class: 'btn btn-danger'  %></p>
 <% end %>
 
 <% if current_user.standard? %>
