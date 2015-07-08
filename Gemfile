@@ -35,6 +35,8 @@ gem 'figaro', '1.0'
 
 gem 'pundit'
 
+gem 'stripe'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -55,6 +57,8 @@ group :development, :test do
   gem 'spring'
    
   gem 'sqlite3'
+  
+  gem 'pry-rails'
   
 end
 
