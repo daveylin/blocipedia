@@ -17,10 +17,9 @@ class CollaboratorsController < ApplicationController
   
   def destroy
     @wiki = Wiki.find(params[:wiki_id])  
-    @collaborator = Collaborator.where(wiki_id: params[:wiki_id], user_id: params[:user_id]) 
-    @c = @collaborator.first
-    #binding.pry
-
+    @collaborator = @wiki.collaborators
+    @c = @collaborator.find_by(user_id: params[:user_id])
+    
     if @c.destroy
       flash[:notice] = "Collaborator was deleted."
       redirect_to edit_wiki_path(@wiki)
