@@ -1,7 +1,9 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all #Wiki.visible_to(current_user)
-    authorize @wikis
+    #@wikis = Wiki.all #Wiki.visible_to(current_user)
+    @user = current_user
+    @wikis = policy_scope(Wiki)
+    #authorize @wikis
   end
 
   def show
@@ -27,6 +29,9 @@ class WikisController < ApplicationController
   
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.all
+    #@collaborators = Collaborator.new
+    @collaborator = Collaborator.new
   end
   
    def update
@@ -50,5 +55,11 @@ class WikisController < ApplicationController
       flash[:error] = "There was an error deleting the item. Please try again."
      end
     
+  end
+  
+  private
+  
+  def collaborator_params
+    params.require(:collaborator).permit(:wiki_id, :user_id)
   end
 end
